@@ -1,11 +1,12 @@
-import {qinglingTile} from '../data/maps/qingling';
+import {qinglingTile,qinglingNaturalTile} from '../data/maps/qingling';
 import {SIZE,RULES,definitions,heroDefinitions,type BuildingKind} from '../data/rules';
 export type Tile={x:number;y:number;z:number;kind:'plain'|'forest'|'hill'|'river'|'rock'|'road'};
 export type Building={id:number;kind:BuildingKind;x:number;y:number;progress:number;scale:number;level:1|2|3};
 export type Hero={id:number;x:number;y:number;target:number|null;path:number[];stamina:number;status:string};
-export type State={version:1;mapVersion?:1|2;ruleset:string;tick:number;seed:number;money:number;food:number;population:number;satisfaction:number;tax:number;buildings:Building[];heroes:Hero[];nextId:number;log:string[]};
+export type State={version:1;mapVersion?:1|2|3;ruleset:string;tick:number;seed:number;money:number;food:number;population:number;satisfaction:number;tax:number;buildings:Building[];heroes:Hero[];nextId:number;log:string[]};
 export const index=(x:number,y:number)=>y*SIZE+x;
-export function generateMap(version:1|2=2):Tile[]{
+export function generateMap(version:1|2|3=3):Tile[]{
+ if(version===3)return Array.from({length:SIZE*SIZE},(_,i)=>qinglingNaturalTile(i%SIZE,Math.floor(i/SIZE)));
  if(version===2)return Array.from({length:SIZE*SIZE},(_,i)=>qinglingTile(i%SIZE,Math.floor(i/SIZE)));
  return Array.from({length:SIZE*SIZE},(_,i)=>{const x=i%SIZE,y=Math.floor(i/SIZE),noise=((x*73+y*131+x*y*7)%101)/100;
  const river=41+Math.round(Math.sin(y/8)*3),water=Math.abs(x-river)<2;
@@ -18,7 +19,7 @@ export function generateMap(version:1|2=2):Tile[]{
 export const footprint=(kind:BuildingKind)=>['road','fence','bridge','housing'].includes(kind)?1:2;
 export class World {
  tiles:Tile[]; state:State;
- constructor(state?:State){this.tiles=generateMap(state?(state.mapVersion??1):2);this.state=state??{version:1,mapVersion:2,ruleset:RULES.version,tick:0,seed:108,money:2400,food:1600,population:240,satisfaction:82,tax:15,buildings:[],heroes:heroDefinitions.map((_,id)=>({id,x:26+(id%4),y:29+Math.floor(id/4),target:null,path:[],stamina:100,status:'待命'})),nextId:1,log:['青嶺寨初立。選一片空地，開始第一座耕地。']};
+ constructor(state?:State){this.tiles=generateMap(state?(state.mapVersion??1):3);this.state=state??{version:1,mapVersion:3,ruleset:RULES.version,tick:0,seed:108,money:2400,food:1600,population:240,satisfaction:82,tax:15,buildings:[],heroes:heroDefinitions.map((_,id)=>({id,x:26+(id%4),y:29+Math.floor(id/4),target:null,path:[],stamina:100,status:'待命'})),nextId:1,log:['青嶺寨初立。選一片空地，開始第一座耕地。']};
  if(!state){for(const [kind,x,y] of [['headquarters',25,23],['farmland',32,25],['market',31,22],['tavern',22,25],['housing',22,30],['housing',23,31],['housing',24,32],['housing',21,32],['barracks',31,31],['training-ground',34,29]] as [BuildingKind,number,number][])this.state.buildings.push({id:this.state.nextId++,kind,x,y,progress:1,scale:1,level:1});
  for(let y=26;y<=30;y++)for(let x=34;x<=44;x++)if(this.tile(x,y)?.kind==='river'&&y===28)this.state.buildings.push({id:this.state.nextId++,kind:'bridge',x,y,progress:1,scale:1,level:1});}}
  tile(x:number,y:number){return this.tiles[index(x,y)];}

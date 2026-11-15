@@ -1,6 +1,6 @@
 const {chromium}=require('playwright');const assert=require('node:assert/strict');
 (async()=>{const browser=await chromium.launch({executablePath:process.env.CHROMIUM_PATH||'/usr/bin/chromium',args:['--no-sandbox']});const page=await browser.newPage({hasTouch:true,viewport:{width:1440,height:900}});const errors=[];page.on('pageerror',e=>errors.push(e.message));
-await page.goto('http://127.0.0.1:5173/tiandao-heroes/?test');await page.waitForFunction(()=>window.__game?.scene.marker);await page.click('#start');
+await page.goto('http://127.0.0.1:5173/tiandao-heroes/?test&canvas');await page.waitForFunction(()=>window.__game?.scene.marker);await page.click('#start');
 await page.click('[data-action="build"]');await page.click('[data-kind="farmland"]');
 const point=await page.evaluate(()=>{const c=window.__game.scene.cameras.main,p=c.getWorldPoint(0,0);return {x:((30-35)*32+2048-p.x)*c.zoom,y:((30+35)*16+96-p.y)*c.zoom};});await page.mouse.click(point.x,point.y);await page.click('#confirm-build');await page.click('#building-assign');await page.check('[data-worker="0"]');await page.check('[data-worker="3"]');await page.click('#assign-workers');
 await page.evaluate(()=>window.__game.world.advance(14400));await page.waitForTimeout(600);
