@@ -1,0 +1,134 @@
+[
+  {
+    "id": "headquarters",
+    "version": "0.2.0",
+    "source": "Original procedural pixel artwork; scripts/create-art.py; seed 108",
+    "license": "Project-original; no third-party image input",
+    "status": "temporary",
+    "path": "assets/headquarters.png",
+    "anchor": [
+      0.5,
+      1
+    ]
+  },
+  {
+    "id": "housing",
+    "version": "0.2.0",
+    "source": "Original procedural pixel artwork; scripts/create-art.py; seed 108",
+    "license": "Project-original; no third-party image input",
+    "status": "temporary",
+    "path": "assets/housing.png",
+    "anchor": [
+      0.5,
+      1
+    ]
+  },
+  {
+    "id": "farmland",
+    "version": "0.2.0",
+    "source": "Original procedural pixel artwork; scripts/create-art.py; seed 108",
+    "license": "Project-original; no third-party image input",
+    "status": "temporary",
+    "path": "assets/farmland.png",
+    "anchor": [
+      0.5,
+      1
+    ]
+  },
+  {
+    "id": "fishery",
+    "version": "0.2.0",
+    "source": "Original procedural pixel artwork; scripts/create-art.py; seed 108",
+    "license": "Project-original; no third-party image input",
+    "status": "temporary",
+    "path": "assets/fishery.png",
+    "anchor": [
+      0.5,
+      1
+    ]
+  },
+  {
+    "id": "tavern",
+    "version": "0.2.0",
+    "source": "Original procedural pixel artwork; scripts/create-art.py; seed 108",
+    "license": "Project-original; no third-party image input",
+    "status": "temporary",
+    "path": "assets/tavern.png",
+    "anchor": [
+      0.5,
+      1
+    ]
+  },
+  {
+    "id": "market",
+    "version": "0.2.0",
+    "source": "Original procedural pixel artwork; scripts/create-art.py; seed 108",
+    "license": "Project-original; no third-party image input",
+    "status": "temporary",
+    "path": "assets/market.png",
+    "anchor": [
+      0.5,
+      1
+    ]
+  },
+  {
+    "id": "barracks",
+    "version": "0.2.0",
+    "source": "Original procedural pixel artwork; scripts/create-art.py; seed 108",
+    "license": "Project-original; no third-party image input",
+    "status": "temporary",
+    "path": "assets/barracks.png",
+    "anchor": [
+      0.5,
+      1
+    ]
+  },
+  {
+    "id": "training-ground",
+    "version": "0.2.0",
+    "source": "Original procedural pixel artwork; scripts/create-art.py; seed 108",
+    "license": "Project-original; no third-party image input",
+    "status": "temporary",
+    "path": "assets/training-ground.png",
+    "anchor": [
+      0.5,
+      1
+    ]
+  },
+  {
+    "id": "road",
+    "version": "0.2.0",
+    "source": "Original procedural pixel artwork; scripts/create-art.py; seed 108",
+    "license": "Project-original; no third-party image input",
+    "status": "temporary",
+    "path": "assets/road.png",
+    "anchor": [
+      0.5,
+      1
+    ]
+  },
+  {
+    "id": "fence",
+    "version": "0.2.0",
+    "source": "Original procedural pixel artwork; scripts/create-art.py; seed 108",
+    "license": "Project-original; no third-party image input",
+    "status": "temporary",
+    "path": "assets/fence.png",
+    "anchor": [
+      0.5,
+      1
+    ]
+  },
+  {
+    "id": "bridge",
+    "version": "0.2.0",
+    "source": "Original procedural pixel artwork; scripts/create-art.py; seed 108",
+    "license": "Project-original; no third-party image input",
+    "status": "temporary",
+    "path": "assets/bridge.png",
+    "anchor": [
+      0.5,
+      1
+    ]
+  }
+]

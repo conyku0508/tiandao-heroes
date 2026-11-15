@@ -1,0 +1,10 @@
+import {test} from 'node:test';
+import assert from 'node:assert/strict';
+import {World} from '../src/systems/world';
+import {validateSave} from '../src/services/save';
+test('same commands and ticks produce identical state',()=>{const a=new World(),b=new World();for(const w of [a,b]){assert.equal(w.build('farmland',30,35),null);assert.equal(w.assign([0,3],w.state.nextId-1),null);}a.advance(600);for(let i=0;i<60;i++)b.advance(10);assert.deepEqual(a.state,b.state);assert.ok(a.state.log.some(x=>x.includes('收成')));assert.equal(a.state.buildings.at(-1)?.progress,1);});
+test('illegal placement never charges money',()=>{const w=new World(),money=w.state.money;assert.ok(w.build('farmland',25,23));assert.ok(w.build('farmland',-1,0));assert.equal(w.state.money,money);});
+test('workers travel then complete construction and improve scale',()=>{const w=new World();w.build('farmland',30,35);const b=w.state.buildings.at(-1)!;w.assign([0,3],b.id);assert.ok(w.state.heroes[0].path.length>0);w.advance(400);assert.equal(b.progress,1);assert.ok(b.scale>1);});
+test('demolition cancels tasks and lowers housing capacity',()=>{const w=new World(),home=w.state.buildings.find(b=>b.kind==='housing')!,cap=w.capacity();w.assign([0],home.id);w.demolish(home.id);assert.equal(w.capacity(),cap-80);assert.equal(w.state.heroes[0].target,null);assert.deepEqual(w.state.heroes[0].path,[]);});
+test('save validation round trips and rejects unknown versions and corrupted state',()=>{const w=new World();w.advance(90);const copy=validateSave(JSON.parse(JSON.stringify(w.state)));assert.deepEqual(copy,w.state);assert.throws(()=>validateSave({...copy,version:9}));assert.throws(()=>validateSave({...copy,money:NaN}));assert.throws(()=>validateSave({...copy,heroes:[]}));});
+test('rock and occupied buildings block movement; open water remains navigable',()=>{const w=new World();assert.equal(w.walkable(25,23),false);assert.equal(w.walkable(1,20),false);const water=w.tiles.find(t=>t.kind==='river'&&!w.at(t.x,t.y))!;assert.equal(w.walkable(water.x,water.y),true);});
