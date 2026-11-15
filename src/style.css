@@ -1,0 +1,1 @@
+:root{color-scheme:dark;font-family:system-ui,sans-serif;background:#10201d;color:#efe8d4}body{margin:0;padding:max(20px,env(safe-area-inset-top)) max(20px,env(safe-area-inset-right)) max(20px,env(safe-area-inset-bottom)) max(20px,env(safe-area-inset-left))}main{max-width:800px;margin:auto}#game{max-width:640px}p{line-height:1.7}

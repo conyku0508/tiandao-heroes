@@ -1,0 +1,92 @@
+[
+  {
+    "path": "00_PROJECT.md",
+    "bytes": 1845,
+    "sha256": "de96ed17d5a76fea9b7006a4125620d1981302da074fde3b613ab12af591fe69"
+  },
+  {
+    "path": "01_GAME_LOOP.md",
+    "bytes": 818,
+    "sha256": "f1ae8c1c4959abc560fe796804a1de2a5712401f52e46084dc3e3d27fcc61021"
+  },
+  {
+    "path": "02_DATA_ARCHITECTURE.md",
+    "bytes": 968,
+    "sha256": "042094b37f1915dc09b4e3918c1b58d1307b52167a94e7c7cd74a14a4cebc481"
+  },
+  {
+    "path": "03_UI_FLOW.md",
+    "bytes": 878,
+    "sha256": "d8ab58f9935ffc58294fe56af48e3cb86ee9d7cede73c8a22b07b30a4ea0c8e7"
+  },
+  {
+    "path": "04_CHARACTER_SYSTEM.md",
+    "bytes": 768,
+    "sha256": "9d6123ce1f49c22184b131b7353ec0da7ca20114d6612d07e57c5a891bc0166d"
+  },
+  {
+    "path": "05_FORTRESS_SYSTEM.md",
+    "bytes": 899,
+    "sha256": "c2f66ae5cdb1a463cbad6c8871285543cca2ec3c8cb7c9504d836642bee6a9b3"
+  },
+  {
+    "path": "06_WORLD_MAP.md",
+    "bytes": 691,
+    "sha256": "0cb4b4ffce7ef73a2b28329abc7711ccc5563f1b9e352f7d2ffe68531eb34f7a"
+  },
+  {
+    "path": "07_MVP_SCOPE.md",
+    "bytes": 743,
+    "sha256": "2f946591ba9b4faf9cde3d3abd9cc64273a9631f6b69254c60a8292c93c745df"
+  },
+  {
+    "path": "08_POPULATION_ECONOMY.md",
+    "bytes": 1142,
+    "sha256": "4123173591fc90fa53863e2ae0a2d5181235d8642699b6dcc3e3c01715c57af5"
+  },
+  {
+    "path": "09_TERRAIN_SYSTEM.md",
+    "bytes": 834,
+    "sha256": "b24dd50cf154d154fcb66d232493db7eefc92e45a67c2de940edcae2e9d6323a"
+  },
+  {
+    "path": "10_TIME_SIMULATION.md",
+    "bytes": 519,
+    "sha256": "e137de3cdc3c0d96bb8e8cec16662eda98a9d0fabc515613bd0f5d0abf3dc340"
+  },
+  {
+    "path": "11_VISUAL_REFERENCE.md",
+    "bytes": 769,
+    "sha256": "d7169f2b5f8531bebe13bcf2944a2bae622127eb6dba979c32d1fc9150bd3d8a"
+  },
+  {
+    "path": "12_SYSTEM_ARCHITECTURE.md",
+    "bytes": 574,
+    "sha256": "fee8edfc059d978115d4242e9e79125f5bd192d57c251ee011437157423989cc"
+  },
+  {
+    "path": "CODEX_PROMPT.md",
+    "bytes": 1611,
+    "sha256": "04b092d7c744d099dcf8cb601e0b0e609a41bf803e9d1a80cc65668115deea39"
+  },
+  {
+    "path": "README_INDEX.md",
+    "bytes": 971,
+    "sha256": "05156043fd3d75aaa9f5dbe46bd7436da754020d4092c11d4a38d0278c3f4e17"
+  },
+  {
+    "path": "references/current_visual_direction.png",
+    "bytes": 4297956,
+    "sha256": "e7aca60c1e129165353b8682a54c63869684fb48bf0cf478b324809ef36c2acb"
+  },
+  {
+    "path": "references/original_pc_reference_user.png",
+    "bytes": 480745,
+    "sha256": "7fff6e6dd71ee0af6275aed11778be269aaa72e66a53f4f52a87c225cb30bf6e"
+  },
+  {
+    "path": "references/previous_visual_reference.png",
+    "bytes": 4196304,
+    "sha256": "7c186fd677ac7a820b4ad825fe6994e356785a4909b127a1039076bb585387e8"
+  }
+]

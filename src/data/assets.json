@@ -1,0 +1,134 @@
+[
+  {
+    "id": "headquarters",
+    "version": "0.1.0",
+    "source": "待原創製作",
+    "license": "待記錄",
+    "status": "planned",
+    "path": null,
+    "anchor": [
+      0.5,
+      1
+    ]
+  },
+  {
+    "id": "housing",
+    "version": "0.1.0",
+    "source": "待原創製作",
+    "license": "待記錄",
+    "status": "planned",
+    "path": null,
+    "anchor": [
+      0.5,
+      1
+    ]
+  },
+  {
+    "id": "farmland",
+    "version": "0.1.0",
+    "source": "待原創製作",
+    "license": "待記錄",
+    "status": "planned",
+    "path": null,
+    "anchor": [
+      0.5,
+      1
+    ]
+  },
+  {
+    "id": "fishery",
+    "version": "0.1.0",
+    "source": "待原創製作",
+    "license": "待記錄",
+    "status": "planned",
+    "path": null,
+    "anchor": [
+      0.5,
+      1
+    ]
+  },
+  {
+    "id": "tavern",
+    "version": "0.1.0",
+    "source": "待原創製作",
+    "license": "待記錄",
+    "status": "planned",
+    "path": null,
+    "anchor": [
+      0.5,
+      1
+    ]
+  },
+  {
+    "id": "market",
+    "version": "0.1.0",
+    "source": "待原創製作",
+    "license": "待記錄",
+    "status": "planned",
+    "path": null,
+    "anchor": [
+      0.5,
+      1
+    ]
+  },
+  {
+    "id": "barracks",
+    "version": "0.1.0",
+    "source": "待原創製作",
+    "license": "待記錄",
+    "status": "planned",
+    "path": null,
+    "anchor": [
+      0.5,
+      1
+    ]
+  },
+  {
+    "id": "training-ground",
+    "version": "0.1.0",
+    "source": "待原創製作",
+    "license": "待記錄",
+    "status": "planned",
+    "path": null,
+    "anchor": [
+      0.5,
+      1
+    ]
+  },
+  {
+    "id": "road",
+    "version": "0.1.0",
+    "source": "待原創製作",
+    "license": "待記錄",
+    "status": "planned",
+    "path": null,
+    "anchor": [
+      0.5,
+      1
+    ]
+  },
+  {
+    "id": "fence",
+    "version": "0.1.0",
+    "source": "待原創製作",
+    "license": "待記錄",
+    "status": "planned",
+    "path": null,
+    "anchor": [
+      0.5,
+      1
+    ]
+  },
+  {
+    "id": "bridge",
+    "version": "0.1.0",
+    "source": "待原創製作",
+    "license": "待記錄",
+    "status": "planned",
+    "path": null,
+    "anchor": [
+      0.5,
+      1
+    ]
+  }
+]
