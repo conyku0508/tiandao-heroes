@@ -1,11 +1,11 @@
 [
   {
     "id": "headquarters",
-    "version": "0.3.0",
-    "source": "Original AI-generated atlas, image_gen; 2026-11-15; no reference image input",
-    "license": "AI-generated original candidate; no third-party image input",
+    "version": "0.5.0",
+    "source": "Original image_gen atlas guided by user-supplied visual style; technical transparency pass; 2026-11-16",
+    "license": "Original generated design; not extracted from a game screenshot",
     "status": "temporary",
-    "path": "assets/fortress-atlas.png",
+    "path": "assets/dense-fortress-atlas.png",
     "anchor": [
       0.5,
       1
@@ -14,11 +14,11 @@
   },
   {
     "id": "housing",
-    "version": "0.3.0",
-    "source": "Original AI-generated atlas, image_gen; 2026-11-15; no reference image input",
-    "license": "AI-generated original candidate; no third-party image input",
+    "version": "0.5.0",
+    "source": "Original image_gen atlas guided by user-supplied visual style; technical transparency pass; 2026-11-16",
+    "license": "Original generated design; not extracted from a game screenshot",
     "status": "temporary",
-    "path": "assets/fortress-atlas.png",
+    "path": "assets/dense-fortress-atlas.png",
     "anchor": [
       0.5,
       1
@@ -27,11 +27,11 @@
   },
   {
     "id": "farmland",
-    "version": "0.3.0",
-    "source": "Original AI-generated atlas, image_gen; 2026-11-15; no reference image input",
-    "license": "AI-generated original candidate; no third-party image input",
+    "version": "0.5.0",
+    "source": "Original image_gen atlas guided by user-supplied visual style; technical transparency pass; 2026-11-16",
+    "license": "Original generated design; not extracted from a game screenshot",
     "status": "temporary",
-    "path": "assets/fortress-atlas.png",
+    "path": "assets/dense-fortress-atlas.png",
     "anchor": [
       0.5,
       1
@@ -40,11 +40,11 @@
   },
   {
     "id": "fishery",
-    "version": "0.3.0",
-    "source": "Original AI-generated atlas, image_gen; 2026-11-15; no reference image input",
-    "license": "AI-generated original candidate; no third-party image input",
+    "version": "0.5.0",
+    "source": "Original image_gen atlas guided by user-supplied visual style; technical transparency pass; 2026-11-16",
+    "license": "Original generated design; not extracted from a game screenshot",
     "status": "temporary",
-    "path": "assets/fortress-atlas.png",
+    "path": "assets/dense-fortress-atlas.png",
     "anchor": [
       0.5,
       1
@@ -53,11 +53,11 @@
   },
   {
     "id": "tavern",
-    "version": "0.3.0",
-    "source": "Original AI-generated atlas, image_gen; 2026-11-15; no reference image input",
-    "license": "AI-generated original candidate; no third-party image input",
+    "version": "0.5.0",
+    "source": "Original image_gen atlas guided by user-supplied visual style; technical transparency pass; 2026-11-16",
+    "license": "Original generated design; not extracted from a game screenshot",
     "status": "temporary",
-    "path": "assets/fortress-atlas.png",
+    "path": "assets/dense-fortress-atlas.png",
     "anchor": [
       0.5,
       1
@@ -66,11 +66,11 @@
   },
   {
     "id": "market",
-    "version": "0.3.0",
-    "source": "Original AI-generated atlas, image_gen; 2026-11-15; no reference image input",
-    "license": "AI-generated original candidate; no third-party image input",
+    "version": "0.5.0",
+    "source": "Original image_gen atlas guided by user-supplied visual style; technical transparency pass; 2026-11-16",
+    "license": "Original generated design; not extracted from a game screenshot",
     "status": "temporary",
-    "path": "assets/fortress-atlas.png",
+    "path": "assets/dense-fortress-atlas.png",
     "anchor": [
       0.5,
       1
@@ -79,11 +79,11 @@
   },
   {
     "id": "barracks",
-    "version": "0.3.0",
-    "source": "Original AI-generated atlas, image_gen; 2026-11-15; no reference image input",
-    "license": "AI-generated original candidate; no third-party image input",
+    "version": "0.5.0",
+    "source": "Original image_gen atlas guided by user-supplied visual style; technical transparency pass; 2026-11-16",
+    "license": "Original generated design; not extracted from a game screenshot",
     "status": "temporary",
-    "path": "assets/fortress-atlas.png",
+    "path": "assets/dense-fortress-atlas.png",
     "anchor": [
       0.5,
       1
@@ -92,11 +92,11 @@
   },
   {
     "id": "training-ground",
-    "version": "0.3.0",
-    "source": "Original AI-generated atlas, image_gen; 2026-11-15; no reference image input",
-    "license": "AI-generated original candidate; no third-party image input",
+    "version": "0.5.0",
+    "source": "Original image_gen atlas guided by user-supplied visual style; technical transparency pass; 2026-11-16",
+    "license": "Original generated design; not extracted from a game screenshot",
     "status": "temporary",
-    "path": "assets/fortress-atlas.png",
+    "path": "assets/dense-fortress-atlas.png",
     "anchor": [
       0.5,
       1
@@ -130,15 +130,234 @@
   },
   {
     "id": "bridge",
-    "version": "0.3.0",
-    "source": "Original AI-generated atlas, image_gen; 2026-11-15; no reference image input",
-    "license": "AI-generated original candidate; no third-party image input",
+    "version": "0.5.0",
+    "source": "Original image_gen atlas guided by user-supplied visual style; technical transparency pass; 2026-11-16",
+    "license": "Original generated design; not extracted from a game screenshot",
     "status": "temporary",
-    "path": "assets/fortress-atlas.png",
+    "path": "assets/dense-fortress-atlas.png",
     "anchor": [
       0.5,
       1
     ],
-    "atlasCell": 9
+    "atlasCell": 11
+  },
+  {
+    "id": "gate",
+    "version": "0.5.0",
+    "source": "Original reference-directed image_gen atlas, 2026-11-16",
+    "license": "Original generated design; not extracted from a game screenshot",
+    "status": "temporary",
+    "path": "assets/dense-fortress-atlas.png",
+    "atlasCell": 8,
+    "anchor": [
+      0.5,
+      1
+    ]
+  },
+  {
+    "id": "wall-ne",
+    "version": "0.5.0",
+    "source": "Original reference-directed image_gen atlas, 2026-11-16",
+    "license": "Original generated design; not extracted from a game screenshot",
+    "status": "temporary",
+    "path": "assets/dense-fortress-atlas.png",
+    "atlasCell": 9,
+    "anchor": [
+      0.5,
+      1
+    ]
+  },
+  {
+    "id": "wall-se",
+    "version": "0.5.0",
+    "source": "Original reference-directed image_gen atlas, 2026-11-16",
+    "license": "Original generated design; not extracted from a game screenshot",
+    "status": "temporary",
+    "path": "assets/dense-fortress-atlas.png",
+    "atlasCell": 10,
+    "anchor": [
+      0.5,
+      1
+    ]
+  },
+  {
+    "id": "tree",
+    "version": "0.5.0",
+    "source": "Original reference-directed image_gen atlas, 2026-11-16",
+    "license": "Original generated design; not extracted from a game screenshot",
+    "status": "temporary",
+    "path": "assets/dense-fortress-atlas.png",
+    "atlasCell": 12,
+    "anchor": [
+      0.5,
+      1
+    ]
+  },
+  {
+    "id": "outcrop",
+    "version": "0.5.0",
+    "source": "Original reference-directed image_gen atlas, 2026-11-16",
+    "license": "Original generated design; not extracted from a game screenshot",
+    "status": "temporary",
+    "path": "assets/dense-fortress-atlas.png",
+    "atlasCell": 13,
+    "anchor": [
+      0.5,
+      1
+    ]
+  },
+  {
+    "id": "workshop",
+    "version": "0.5.0",
+    "source": "Original reference-directed image_gen atlas, 2026-11-16",
+    "license": "Original generated design; not extracted from a game screenshot",
+    "status": "temporary",
+    "path": "assets/dense-fortress-atlas.png",
+    "atlasCell": 14,
+    "anchor": [
+      0.5,
+      1
+    ]
+  },
+  {
+    "id": "plot",
+    "version": "0.5.0",
+    "source": "Original reference-directed image_gen atlas, 2026-11-16",
+    "license": "Original generated design; not extracted from a game screenshot",
+    "status": "temporary",
+    "path": "assets/dense-fortress-atlas.png",
+    "atlasCell": 15,
+    "anchor": [
+      0.5,
+      1
+    ]
+  },
+  {
+    "id": "hero-0",
+    "renderKey": "dense-hero-0",
+    "version": "0.5.0",
+    "source": "Original image_gen 4x2 profession atlas and transparency pass, 2026-11-16",
+    "license": "Original generated character design",
+    "status": "temporary",
+    "path": "assets/dense-heroes-atlas.png",
+    "atlasCell": 0,
+    "columns": 4,
+    "rows": 2,
+    "anchor": [
+      0.5,
+      1
+    ]
+  },
+  {
+    "id": "hero-1",
+    "renderKey": "dense-hero-1",
+    "version": "0.5.0",
+    "source": "Original image_gen 4x2 profession atlas and transparency pass, 2026-11-16",
+    "license": "Original generated character design",
+    "status": "temporary",
+    "path": "assets/dense-heroes-atlas.png",
+    "atlasCell": 1,
+    "columns": 4,
+    "rows": 2,
+    "anchor": [
+      0.5,
+      1
+    ]
+  },
+  {
+    "id": "hero-2",
+    "renderKey": "dense-hero-2",
+    "version": "0.5.0",
+    "source": "Original image_gen 4x2 profession atlas and transparency pass, 2026-11-16",
+    "license": "Original generated character design",
+    "status": "temporary",
+    "path": "assets/dense-heroes-atlas.png",
+    "atlasCell": 2,
+    "columns": 4,
+    "rows": 2,
+    "anchor": [
+      0.5,
+      1
+    ]
+  },
+  {
+    "id": "hero-3",
+    "renderKey": "dense-hero-3",
+    "version": "0.5.0",
+    "source": "Original image_gen 4x2 profession atlas and transparency pass, 2026-11-16",
+    "license": "Original generated character design",
+    "status": "temporary",
+    "path": "assets/dense-heroes-atlas.png",
+    "atlasCell": 3,
+    "columns": 4,
+    "rows": 2,
+    "anchor": [
+      0.5,
+      1
+    ]
+  },
+  {
+    "id": "hero-4",
+    "renderKey": "dense-hero-4",
+    "version": "0.5.0",
+    "source": "Original image_gen 4x2 profession atlas and transparency pass, 2026-11-16",
+    "license": "Original generated character design",
+    "status": "temporary",
+    "path": "assets/dense-heroes-atlas.png",
+    "atlasCell": 4,
+    "columns": 4,
+    "rows": 2,
+    "anchor": [
+      0.5,
+      1
+    ]
+  },
+  {
+    "id": "hero-5",
+    "renderKey": "dense-hero-5",
+    "version": "0.5.0",
+    "source": "Original image_gen 4x2 profession atlas and transparency pass, 2026-11-16",
+    "license": "Original generated character design",
+    "status": "temporary",
+    "path": "assets/dense-heroes-atlas.png",
+    "atlasCell": 5,
+    "columns": 4,
+    "rows": 2,
+    "anchor": [
+      0.5,
+      1
+    ]
+  },
+  {
+    "id": "hero-6",
+    "renderKey": "dense-hero-6",
+    "version": "0.5.0",
+    "source": "Original image_gen 4x2 profession atlas and transparency pass, 2026-11-16",
+    "license": "Original generated character design",
+    "status": "temporary",
+    "path": "assets/dense-heroes-atlas.png",
+    "atlasCell": 6,
+    "columns": 4,
+    "rows": 2,
+    "anchor": [
+      0.5,
+      1
+    ]
+  },
+  {
+    "id": "hero-7",
+    "renderKey": "dense-hero-7",
+    "version": "0.5.0",
+    "source": "Original image_gen 4x2 profession atlas and transparency pass, 2026-11-16",
+    "license": "Original generated character design",
+    "status": "temporary",
+    "path": "assets/dense-heroes-atlas.png",
+    "atlasCell": 7,
+    "columns": 4,
+    "rows": 2,
+    "anchor": [
+      0.5,
+      1
+    ]
   }
 ]

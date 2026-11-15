@@ -2,7 +2,7 @@ const {chromium}=require('playwright');const assert=require('node:assert/strict'
 (async()=>{const b=await chromium.launch({executablePath:process.env.CHROMIUM_PATH||'/usr/bin/chromium',args:['--no-sandbox']});try{
  const p=await b.newPage({viewport:{width:1440,height:900}}),errors=[];p.on('pageerror',e=>errors.push(e.message));
  await p.goto('http://127.0.0.1:5173/tiandao-heroes/?test&canvas');await p.waitForFunction(()=>window.__game?.scene.marker);await p.click('#start');
- await p.evaluate(()=>{const s=window.__game.scene;s.onSelect(31,22,null);});await p.locator('.building-preview').waitFor();
+ await p.evaluate(()=>{const s=window.__game.scene,b=window.__game.world.state.buildings.find(b=>b.kind==='market');s.onSelect(b.x,b.y,null);});await p.locator('.building-preview').waitFor();
  await p.screenshot({path:'/workspace/classic-scene-desktop.png',timeout:60000});
  await p.click('.close');
  for(const [width,height] of [[844,390],[667,375],[1024,768]]){

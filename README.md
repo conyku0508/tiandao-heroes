@@ -29,22 +29,24 @@ npm run dev
 
 ## 美術狀態
 
-自製程式繪製像素原型素材，來源為 `scripts/create-art.py`，不含第三方圖像。11項資產定義可替換；素材狀態temporary，尚未達到參考圖的精緻程度，待風格驗收。產圖需Python與Pillow13；PNG已納入版本管理，正常建置不需Python。
+目前使用依使用者參考圖風格設計的原創建築／環境4×4圖集及人物4×2圖集，由image_gen產生並做透明處理。群聚民居、寨牆寨門、水道、橋梁、院落與農田共同構成新版聚落。素材與人物面板一致，可獨立替換；來源、版本與格號記錄於src/data/assets.json，完整說明見[整體美術重做](docs/DENSE-ART-DIRECTION.md)。舊版程序素材與生成腳本保留作歷史版本；正常建置不需Python。
+
+新局為聚落美術v4。舊存檔保留原地圖及進度，但建築、林木和人物套用新素材。人物目前為靜態造型，素材仍待美術方向驗收。
 
 ## 測試
 
-`npm run typecheck`、`npm test`、`npm run build`。啟動dev後執行 `node scripts/browser-check.cjs` 進行Chromium流程測試；預設 `/usr/bin/chromium`，可設CHROMIUM_PATH。測試專用狀態入口僅DEV且網址帶?test時啟用，production不提供。
+`npm run typecheck`、`npm test`、`npm run build`。美術與小地圖檢查：node scripts/dense-art-check.cjs、node scripts/classic-ui-check.cjs。啟動dev後執行 `node scripts/browser-check.cjs` 進行Chromium流程測試；預設 `/usr/bin/chromium`，可設CHROMIUM_PATH。測試專用狀態入口僅DEV且網址帶?test時啟用，production不提供。
 
 ## 部署
 
-PR/push CI執行npm ci、型別檢查、測試和build，提供dist artifact下載。Pages工作流程採手動發布；尚未實際部署。需合併／確認發布，Repository Settings → Pages選GitHub Actions，再執行Publish Pages manually。Vite base為 `/tiandao-heroes/`。
+PR/push CI執行npm ci、型別檢查、測試和build，提供dist artifact下載。公開測試站：https://conyku0508.github.io/tiandao-heroes/ 。Pages工作流程採手動發布，更新經PR合併後執行Publish Pages manually。Vite base為 `/tiandao-heroes/`。
 
 ## 後續保留
 
-建築升級、整地、完整職業／體力成長、徵兵、招募、外交、遠征、世界地圖與戰鬥；完整存檔舊版遷移（目前僅v1）、音效與動畫、細緻美術、真機手勢驗收。普通居民仍以人口與自動住宅表現，不新增可操作NPC。
+建築升級、整地、完整職業／體力成長、徵兵、招募、外交、遠征、世界地圖與戰鬥；後續存檔格式遷移、音效與動畫、細緻美術、真機手勢驗收。普通居民仍以人口與自動住宅表現，不新增可操作NPC。
 
 [規格差異](docs/DECISIONS.md) · [架構](docs/ARCHITECTURE.md) · [美術草案](docs/ART-DIRECTION.md) · [第一版交付](docs/PROTOTYPE.md)
 
 ## 經典介面更新
 
-上方內政／人物／情報與存讀檔選單、灰色藍標題浮窗、底部事件及右下可操作小地圖。新局為自然山地v3，v1/v2舊存檔保留各自地形。查核來源與差異見 [CLASSIC-UI-REFERENCE](docs/CLASSIC-UI-REFERENCE.md)。
+上方內政／人物／情報與存讀檔選單、灰色藍標題浮窗、底部事件及右下可操作小地圖。新局為聚落美術v4，v1/v2/v3舊存檔保留各自地形。查核來源與差異見 [CLASSIC-UI-REFERENCE](docs/CLASSIC-UI-REFERENCE.md)。
