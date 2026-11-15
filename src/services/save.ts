@@ -2,7 +2,8 @@ import {World,type State} from '../systems/world';
 import {RULES,definitions,heroDefinitions,SIZE} from '../data/rules';
 const finite=(n:unknown)=>typeof n==='number'&&Number.isFinite(n)&&n>=0;
 export function validateSave(value:unknown):State {
- if(!value||typeof value!=='object')throw Error('存檔格式錯誤');const s=value as State;
+ if(!value||typeof value!=='object')throw Error('存檔格式錯誤');const s=structuredClone(value) as State;
+ if(s.version===1&&s.ruleset==='prototype-1'&&finite(s.tick)&&Number.isInteger(s.tick)){s.tick*=24;s.ruleset=RULES.version;}
  if(s.version!==1||s.ruleset!==RULES.version)throw Error('存檔版本不相容，原存檔已保留');
  if(!['tick','seed','money','food','population','satisfaction','tax','nextId'].every(k=>finite(s[k as keyof State]))||!Number.isInteger(s.tick)||!Array.isArray(s.buildings)||!Array.isArray(s.heroes)||s.heroes.length!==8||!Array.isArray(s.log)||!s.log.every(x=>typeof x==='string'))throw Error('存檔資料不完整');
  const position=(p:{x:number;y:number})=>Number.isInteger(p.x)&&Number.isInteger(p.y)&&p.x>=0&&p.y>=0&&p.x<SIZE&&p.y<SIZE;
