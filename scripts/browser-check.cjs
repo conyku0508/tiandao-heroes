@@ -3,7 +3,7 @@ const {chromium}=require('playwright');const assert=require('node:assert/strict'
 await page.goto('http://127.0.0.1:5173/tiandao-heroes/?test');await page.waitForFunction(()=>window.__game?.scene.marker);await page.click('#start');
 await page.click('[data-action="build"]');await page.click('[data-kind="farmland"]');
 const point=await page.evaluate(()=>{const c=window.__game.scene.cameras.main,p=c.getWorldPoint(0,0);return {x:((30-35)*32+2048-p.x)*c.zoom,y:((30+35)*16+96-p.y)*c.zoom};});await page.mouse.click(point.x,point.y);await page.click('#confirm-build');await page.click('#building-assign');await page.check('[data-worker="0"]');await page.check('[data-worker="3"]');await page.click('#assign-workers');
-await page.evaluate(()=>window.__game.world.advance(600));await page.waitForTimeout(600);
+await page.evaluate(()=>window.__game.world.advance(14400));await page.waitForTimeout(600);
 assert.ok(await page.evaluate(()=>window.__game.world.state.log.some(x=>x.includes('收成'))));
 await page.click('[data-action="save"]');await page.waitForFunction(()=>document.querySelector('#notice').textContent.includes('已儲存'));
 const saved=await page.evaluate(()=>JSON.stringify(window.__game.world.state));await page.reload();await page.waitForFunction(()=>window.__game?.scene.marker);await page.click('#continue');await page.waitForFunction(()=>document.querySelector('#welcome').hidden);assert.equal(await page.evaluate(()=>JSON.stringify(window.__game.world.state)),saved);

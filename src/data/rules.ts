@@ -1,6 +1,6 @@
 // All balance values are provisional original prototype values, not original-game formulas.
 export const SIZE=64;
-export const RULES={version:'prototype-1',dayTicks:10,tickMs:100,seasonDays:30,harvestDays:60,facilityLimit:60};
+export const RULES={version:'prototype-2',dayTicks:240,tickMs:100,seasonDays:30,harvestDays:60,facilityLimit:60};
 export const definitions={
  headquarters:{name:'聚義堂',cost:0,days:1,terrain:['plain'],description:'山寨議事與物資管理所在。'},
  housing:{name:'民居',cost:0,days:1,terrain:['plain'],description:'人口增長時自動生成，提供80人容量。'},
