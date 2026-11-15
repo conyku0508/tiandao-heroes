@@ -1,99 +1,107 @@
 [
   {
     "id": "headquarters",
-    "version": "0.2.0",
-    "source": "Original procedural pixel artwork; scripts/create-art.py; seed 108",
-    "license": "Project-original; no third-party image input",
+    "version": "0.3.0",
+    "source": "Original AI-generated atlas, image_gen; 2026-11-15; no reference image input",
+    "license": "AI-generated original candidate; no third-party image input",
     "status": "temporary",
-    "path": "assets/headquarters.png",
+    "path": "assets/fortress-atlas.png",
     "anchor": [
       0.5,
       1
-    ]
+    ],
+    "atlasCell": 0
   },
   {
     "id": "housing",
-    "version": "0.2.0",
-    "source": "Original procedural pixel artwork; scripts/create-art.py; seed 108",
-    "license": "Project-original; no third-party image input",
+    "version": "0.3.0",
+    "source": "Original AI-generated atlas, image_gen; 2026-11-15; no reference image input",
+    "license": "AI-generated original candidate; no third-party image input",
     "status": "temporary",
-    "path": "assets/housing.png",
+    "path": "assets/fortress-atlas.png",
     "anchor": [
       0.5,
       1
-    ]
+    ],
+    "atlasCell": 1
   },
   {
     "id": "farmland",
-    "version": "0.2.0",
-    "source": "Original procedural pixel artwork; scripts/create-art.py; seed 108",
-    "license": "Project-original; no third-party image input",
+    "version": "0.3.0",
+    "source": "Original AI-generated atlas, image_gen; 2026-11-15; no reference image input",
+    "license": "AI-generated original candidate; no third-party image input",
     "status": "temporary",
-    "path": "assets/farmland.png",
+    "path": "assets/fortress-atlas.png",
     "anchor": [
       0.5,
       1
-    ]
+    ],
+    "atlasCell": 7
   },
   {
     "id": "fishery",
-    "version": "0.2.0",
-    "source": "Original procedural pixel artwork; scripts/create-art.py; seed 108",
-    "license": "Project-original; no third-party image input",
+    "version": "0.3.0",
+    "source": "Original AI-generated atlas, image_gen; 2026-11-15; no reference image input",
+    "license": "AI-generated original candidate; no third-party image input",
     "status": "temporary",
-    "path": "assets/fishery.png",
+    "path": "assets/fortress-atlas.png",
     "anchor": [
       0.5,
       1
-    ]
+    ],
+    "atlasCell": 6
   },
   {
     "id": "tavern",
-    "version": "0.2.0",
-    "source": "Original procedural pixel artwork; scripts/create-art.py; seed 108",
-    "license": "Project-original; no third-party image input",
+    "version": "0.3.0",
+    "source": "Original AI-generated atlas, image_gen; 2026-11-15; no reference image input",
+    "license": "AI-generated original candidate; no third-party image input",
     "status": "temporary",
-    "path": "assets/tavern.png",
+    "path": "assets/fortress-atlas.png",
     "anchor": [
       0.5,
       1
-    ]
+    ],
+    "atlasCell": 2
   },
   {
     "id": "market",
-    "version": "0.2.0",
-    "source": "Original procedural pixel artwork; scripts/create-art.py; seed 108",
-    "license": "Project-original; no third-party image input",
+    "version": "0.3.0",
+    "source": "Original AI-generated atlas, image_gen; 2026-11-15; no reference image input",
+    "license": "AI-generated original candidate; no third-party image input",
     "status": "temporary",
-    "path": "assets/market.png",
+    "path": "assets/fortress-atlas.png",
     "anchor": [
       0.5,
       1
-    ]
+    ],
+    "atlasCell": 3
   },
   {
     "id": "barracks",
-    "version": "0.2.0",
-    "source": "Original procedural pixel artwork; scripts/create-art.py; seed 108",
-    "license": "Project-original; no third-party image input",
+    "version": "0.3.0",
+    "source": "Original AI-generated atlas, image_gen; 2026-11-15; no reference image input",
+    "license": "AI-generated original candidate; no third-party image input",
     "status": "temporary",
-    "path": "assets/barracks.png",
+    "path": "assets/fortress-atlas.png",
     "anchor": [
       0.5,
       1
-    ]
+    ],
+    "atlasCell": 4
   },
   {
     "id": "training-ground",
-    "version": "0.2.0",
-    "source": "Original procedural pixel artwork; scripts/create-art.py; seed 108",
-    "license": "Project-original; no third-party image input",
+    "version": "0.3.0",
+    "source": "Original AI-generated atlas, image_gen; 2026-11-15; no reference image input",
+    "license": "AI-generated original candidate; no third-party image input",
     "status": "temporary",
-    "path": "assets/training-ground.png",
+    "path": "assets/fortress-atlas.png",
     "anchor": [
       0.5,
       1
-    ]
+    ],
+    "atlasCell": 5
   },
   {
     "id": "road",
@@ -109,26 +117,28 @@
   },
   {
     "id": "fence",
-    "version": "0.2.0",
-    "source": "Original procedural pixel artwork; scripts/create-art.py; seed 108",
-    "license": "Project-original; no third-party image input",
+    "version": "0.3.0",
+    "source": "Original AI-generated atlas, image_gen; 2026-11-15; no reference image input",
+    "license": "AI-generated original candidate; no third-party image input",
     "status": "temporary",
-    "path": "assets/fence.png",
+    "path": "assets/fortress-atlas.png",
     "anchor": [
       0.5,
       1
-    ]
+    ],
+    "atlasCell": 8
   },
   {
     "id": "bridge",
-    "version": "0.2.0",
-    "source": "Original procedural pixel artwork; scripts/create-art.py; seed 108",
-    "license": "Project-original; no third-party image input",
+    "version": "0.3.0",
+    "source": "Original AI-generated atlas, image_gen; 2026-11-15; no reference image input",
+    "license": "AI-generated original candidate; no third-party image input",
     "status": "temporary",
-    "path": "assets/bridge.png",
+    "path": "assets/fortress-atlas.png",
     "anchor": [
       0.5,
       1
-    ]
+    ],
+    "atlasCell": 9
   }
 ]
