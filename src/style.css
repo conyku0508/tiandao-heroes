@@ -16,3 +16,5 @@
  #minimap-toggle{min-width:44px;min-height:44px}
  #minimap-window .window-title{height:44px}
 }
+.row canvas{width:32px;height:44px;object-fit:contain;image-rendering:pixelated;flex:none}
+.hero-portrait{display:block;width:64px;height:88px;margin:0 auto;image-rendering:pixelated}
