@@ -1,27 +1,23 @@
 import Phaser from 'phaser';
+import {SCENE_LANDMARKS,MOUNTAIN_SCENERY} from '../data/maps/qingling';
 import {ATLAS_CELLS} from '../data/art';
 import {World,type Tile} from '../systems/world';
-import {definitions,heroDefinitions,SIZE,type BuildingKind} from '../data/rules';
+import {heroDefinitions,SIZE,type BuildingKind} from '../data/rules';
 export const project=(x:number,y:number,z=0)=>({x:(x-y)*32+2048,y:(x+y)*16-z*16+80});
 export class FortressScene extends Phaser.Scene {
  world!:World; onSelect:(x:number,y:number,hero:number|null)=>void=()=>{}; ready:()=>void=()=>{};
+ terrainObjects:Phaser.GameObjects.GameObject[]=[];
  objects:Phaser.GameObjects.GameObject[]=[]; heroes:Phaser.GameObjects.Image[]=[];
  marker!:Phaser.GameObjects.Graphics; selected:{x:number;y:number}|null=null; preview:BuildingKind|null=null;
  private start={x:0,y:0};private moved=false;private pinch=0;private elapsed=0; speed=0;
- preload(){this.load.image('fortress-atlas',`${import.meta.env.BASE_URL}assets/fortress-atlas.png`);for(const key of ['plain','forest','hill','rock','river','road',...heroDefinitions.map((_,i)=>'hero-'+i)])this.load.image(key,`${import.meta.env.BASE_URL}assets/${key}.png`);}
+ preload(){this.load.image('mountain-atlas',`${import.meta.env.BASE_URL}assets/mountain-atlas.png`);this.load.image('fortress-atlas',`${import.meta.env.BASE_URL}assets/fortress-atlas.png`);for(const key of ['plain','forest','hill','rock','river','road',...heroDefinitions.map((_,i)=>'hero-'+i)])this.load.image(key,`${import.meta.env.BASE_URL}assets/${key}.png`);}
  create(){
  const atlas=this.textures.get('fortress-atlas').getSourceImage() as HTMLImageElement;
  ATLAS_CELLS.forEach(([key,w,h],i)=>{const texture=this.textures.createCanvas(key,w,h)!;texture.getContext().imageSmoothingEnabled=false;texture.getContext().drawImage(atlas,(i%4)*atlas.width/4,Math.floor(i/4)*atlas.height/4,atlas.width/4,atlas.height/4,0,0,w,h);texture.refresh();});
+ const mountains=this.textures.get('mountain-atlas').getSourceImage() as HTMLImageElement;
+ MOUNTAIN_SCENERY.forEach(m=>{const texture=this.textures.createCanvas(m.key,m.width,m.height)!;texture.getContext().imageSmoothingEnabled=false;texture.getContext().drawImage(mountains,(m.cell%2)*mountains.width/2,Math.floor(m.cell/2)*mountains.height/2,mountains.width/2,mountains.height/2,0,0,m.width,m.height);texture.refresh();});
  this.input.addPointer(2);this.cameras.main.setBackgroundColor('#233e38');
- const ground=this.textures.createCanvas('ground',4096,2200)!;const ctx=ground.getContext();
- for(const t of [...this.world.tiles].sort((a,b)=>a.x+a.y-b.x-b.y)){const p=project(t.x,t.y,t.z);const image=this.textures.get(t.kind).getSourceImage() as HTMLImageElement;
- // Expose cliff faces only at a real height difference, not under every grass tile.
- for(const [dx,dy,shade] of [[1,0,'#59604b'],[0,1,'#74755a']] as [number,number,string][]){const neighbor=this.world.tiles[(t.y+dy)*SIZE+t.x+dx];const drop=Math.max(0,t.z-(neighbor?.z??0))*16;if(drop){const left=dx===0;const ax=p.x+(left?-32:32),ay=p.y+16;ctx.fillStyle=shade;ctx.beginPath();ctx.moveTo(ax,ay);ctx.lineTo(p.x,p.y+32);ctx.lineTo(p.x,p.y+32+drop);ctx.lineTo(ax,ay+drop);ctx.closePath();ctx.fill();ctx.strokeStyle='#383e3180';for(let k=5;k<drop;k+=7){ctx.beginPath();ctx.moveTo(ax,ay+k);ctx.lineTo(p.x,p.y+32+k);ctx.stroke();}}}
- ctx.drawImage(image,0,0,64,32,p.x-32,p.y,64,32);
- if(t.kind==='river'){ctx.strokeStyle='#a4d7c44a';ctx.beginPath();ctx.moveTo(p.x-15,p.y+17);ctx.lineTo(p.x-7,p.y+17);ctx.moveTo(p.x+6,p.y+11);ctx.lineTo(p.x+18,p.y+11);ctx.stroke();}
- }
- ground.refresh();this.add.image(0,0,'ground').setOrigin(0).setDepth(-1);
- for(const t of this.world.tiles){if(t.kind==='forest'){const p=project(t.x,t.y,t.z);this.add.image(p.x,p.y+15,'tree').setOrigin(.5,1).setDepth(t.x+t.y+.4);}else if(t.kind==='rock'&&(t.x*7+t.y*13)%4===0){const p=project(t.x,t.y,t.z);this.add.image(p.x,p.y+24,'outcrop').setOrigin(.5,1).setDepth(t.x+t.y+.3);}else if(t.kind==='plain'&&(t.x*19+t.y*7)%23===0&&!this.world.at(t.x,t.y)){const p=project(t.x,t.y,t.z);this.add.image(p.x,p.y+24,'undergrowth').setOrigin(.5,1).setDepth(t.x+t.y+.2);}}
+ this.refreshTerrain();
  this.marker=this.add.graphics().setDepth(1000);this.refreshBuildings();this.heroes=this.world.state.heroes.map(h=>{const p=project(h.x,h.y,this.world.tile(h.x,h.y).z);return this.add.image(p.x,p.y+16,'hero-'+h.id).setOrigin(.5,1).setDepth(h.x+h.y+2);});
  this.center();this.scale.on('resize',()=>this.center());this.input.on('pointerdown',(p:Phaser.Input.Pointer)=>{this.start={x:p.x,y:p.y};this.moved=false;this.pinch=0;});
  this.input.on('pointermove',(p:Phaser.Input.Pointer)=>{const touches=this.input.manager.pointers.filter(q=>q.isDown);if(touches.length>1){const distance=Phaser.Math.Distance.Between(touches[0].x,touches[0].y,touches[1].x,touches[1].y);if(this.pinch)this.zoomAt(this.cameras.main.zoom*distance/this.pinch,(touches[0].x+touches[1].x)/2,(touches[0].y+touches[1].y)/2);this.pinch=distance;this.moved=true;return;}if(p.isDown){if(Math.hypot(p.x-this.start.x,p.y-this.start.y)>7)this.moved=true;const c=this.cameras.main;c.scrollX-=(p.x-p.prevPosition.x)/c.zoom;c.scrollY-=(p.y-p.prevPosition.y)/c.zoom;}});
@@ -29,7 +25,24 @@ export class FortressScene extends Phaser.Scene {
  for(const t of this.world.tiles){const point=project(t.x,t.y,t.z);if(Math.abs(v.x-point.x)/32+Math.abs(v.y-point.y-16)/16<=1&&(!best||t.x+t.y>best.x+best.y))best=t;}
  if(best){let hero:number|null=null;let distance=25;for(const h of this.world.state.heroes){const pos=project(h.x,h.y,this.world.tile(h.x,h.y).z);const dist=Math.hypot(v.x-pos.x,v.y-(pos.y+2));if(dist<distance){hero=h.id;distance=dist;}}this.selected={x:best.x,y:best.y};this.onSelect(best.x,best.y,hero);}});
  this.input.on('wheel',(_p:unknown,_o:unknown,_dx:number,dy:number)=>this.zoomAt(this.cameras.main.zoom*(dy>0?.9:1.1),this.input.activePointer.x,this.input.activePointer.y));this.ready();}
- center(){const p=project(28,28);this.cameras.main.setZoom(this.scale.width<1050?1.05:1.4);this.cameras.main.centerOn(p.x,p.y);}
+ refreshTerrain(){this.terrainObjects.forEach(o=>o.destroy());this.terrainObjects=[];if(this.textures.exists('ground'))this.textures.remove('ground');
+ const ground=this.textures.createCanvas('ground',4096,2200)!;const ctx=ground.getContext();
+ for(const t of [...this.world.tiles].sort((a,b)=>a.x+a.y-b.x-b.y)){const p=project(t.x,t.y,t.z);const image=this.textures.get(t.kind).getSourceImage() as HTMLImageElement;
+ // Natural mountains use a continuous corner mesh, avoiding stair-step cubes.
+ if(t.kind==='rock'&&this.world.state.mapVersion===2){const corner=(x:number,y:number)=>{const cells=[[x,y],[x-1,y],[x,y-1],[x-1,y-1]].map(([xx,yy])=>this.world.tile(xx,yy)).filter(Boolean);const height=cells.reduce((sum,c)=>sum+c.z,0)/cells.length;return project(x,y,height);};const points=[corner(t.x,t.y),corner(t.x+1,t.y),corner(t.x+1,t.y+1),corner(t.x,t.y+1)];for(const [a,b,shade] of [[1,2,'#58614f'],[2,3,'#68725b']] as [number,number,string][]){const pa=points[a],pb=points[b];const bottomA=project(t.x+(a===1?1:a===2?1:0),t.y+(a===1?0:1),0),bottomB=project(t.x+(b===1?1:b===2?1:0),t.y+(b===1?0:1),0);ctx.fillStyle=shade;ctx.beginPath();ctx.moveTo(pa.x,pa.y);ctx.lineTo(pb.x,pb.y);ctx.lineTo(bottomB.x,bottomB.y);ctx.lineTo(bottomA.x,bottomA.y);ctx.closePath();ctx.fill();}ctx.save();ctx.beginPath();points.forEach((v,i)=>i?ctx.lineTo(v.x,v.y):ctx.moveTo(v.x,v.y));ctx.closePath();ctx.fillStyle='#737c66';ctx.fill();ctx.clip();for(let k=0;k<32;k++){const xx=p.x-32+((k*17+t.x*11)%64),yy=p.y-20+((k*13+t.y*7)%65);ctx.strokeStyle=k%3?'#46594755':'#bcc09a55';ctx.beginPath();ctx.moveTo(xx,yy);ctx.lineTo(xx+7,yy-3);ctx.stroke();}ctx.restore();continue;}
+ // Expose cliff faces only at a real height difference, not under every grass tile.
+ for(const [dx,dy,shade] of [[1,0,'#545c50'],[0,1,'#828573']] as [number,number,string][]){const neighbor=this.world.tiles[(t.y+dy)*SIZE+t.x+dx];const drop=Math.max(0,t.z-(neighbor?.z??0))*16;if(drop){const left=dx===0;const ax=p.x+(left?-32:32),ay=p.y+16;ctx.fillStyle=shade;ctx.beginPath();ctx.moveTo(ax,ay);ctx.lineTo(p.x,p.y+32);ctx.lineTo(p.x,p.y+32+drop);ctx.lineTo(ax,ay+drop);ctx.closePath();ctx.fill();ctx.save();ctx.clip();for(let k=0;k<55;k++){const f=((t.x*17+t.y*31+k*13)%97)/97,hh=((k*19+t.x*11)%101)/101;const xx=ax+(p.x-ax)*f,yy=ay+(p.y+32-ay)*f+hh*drop;ctx.strokeStyle=k%3===0?'#c0b99c66':'#2e3d355c';ctx.beginPath();ctx.moveTo(xx,yy);ctx.lineTo(xx+5+(k%8),yy-2);ctx.stroke();}ctx.restore();}}
+ ctx.drawImage(image,0,0,64,32,p.x-32,p.y,64,32);
+ if(t.kind==='road'){ctx.save();ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(p.x+32,p.y+16);ctx.lineTo(p.x,p.y+32);ctx.lineTo(p.x-32,p.y+16);ctx.closePath();ctx.clip();for(let a=0;a<5;a++)for(let b=0;b<5;b++){const sx=p.x+(a-b)*7,sy=p.y+3+(a+b)*3.5;ctx.fillStyle=['#b1a68c','#c1b397','#a79e87'][(a+b+t.x+t.y)%3];ctx.beginPath();ctx.moveTo(sx,sy);ctx.lineTo(sx+6,sy+3);ctx.lineTo(sx,sy+6);ctx.lineTo(sx-6,sy+3);ctx.closePath();ctx.fill();}ctx.restore();}
+ if(t.kind==='river'){ctx.strokeStyle='#a4d7c44a';ctx.beginPath();ctx.moveTo(p.x-15,p.y+17);ctx.lineTo(p.x-7,p.y+17);ctx.moveTo(p.x+6,p.y+11);ctx.lineTo(p.x+18,p.y+11);ctx.stroke();}
+ }
+ ground.refresh();this.terrainObjects.push(this.add.image(0,0,'ground').setOrigin(0).setDepth(-1));
+ for(const t of this.world.tiles){if(t.kind==='forest'){const p=project(t.x,t.y,t.z);this.terrainObjects.push(this.add.image(p.x,p.y+15,'tree').setOrigin(.5,1).setScale(.8+((t.x*7+t.y)%5)*.08).setDepth(t.x+t.y+.4));}else if(t.kind==='rock'&&(t.x*7+t.y*13)%4===0){const p=project(t.x,t.y,t.z);this.terrainObjects.push(this.add.image(p.x,p.y+24,'outcrop').setOrigin(.5,1).setScale(t.z>=4?1.8:1.15).setDepth(t.x+t.y+.3));}else if(t.kind==='plain'&&(t.x*19+t.y*7)%23===0&&!this.world.at(t.x,t.y)){const p=project(t.x,t.y,t.z);this.terrainObjects.push(this.add.image(p.x,p.y+24,'undergrowth').setOrigin(.5,1).setDepth(t.x+t.y+.2));}}
+
+ if(this.world.state.mapVersion===2){for(const m of MOUNTAIN_SCENERY){const p=project(m.x,m.y,m.z);this.terrainObjects.push(this.add.image(p.x,p.y+32,m.key).setOrigin(.5,1).setDepth(m.x+m.y+(m.cell===3?-1:.5)));}}
+ if(this.world.state.mapVersion===2){for(const mark of SCENE_LANDMARKS.filter(m=>m.name==='河谷沃田'||m.name==='青嶺後山')){const p=project(mark.x,mark.y,mark.z);this.terrainObjects.push(this.add.text(p.x,p.y-35,mark.name,{fontFamily:'serif',fontSize:'12px',color:'#e5dbb5',backgroundColor:'#23352cc9',padding:{x:7,y:4}}).setOrigin(.5).setDepth(800).setAlpha(.8));}}
+ }
+ center(){const p=project(27,26,2);this.cameras.main.setZoom(this.scale.width<1050?1.05:1.4);this.cameras.main.centerOn(p.x,p.y);}
  zoomAt(zoom:number,x=this.scale.width/2,y=this.scale.height/2){const c=this.cameras.main,old=c.getWorldPoint(x,y);c.setZoom(Phaser.Math.Clamp(zoom,.35,2));const next=c.getWorldPoint(x,y);c.scrollX+=old.x-next.x;c.scrollY+=old.y-next.y;}
  refreshBuildings(){this.objects.forEach(o=>o.destroy());this.objects=[];for(const b of this.world.state.buildings){const p=project(b.x+.5,b.y+.5,this.world.tile(b.x,b.y).z);const image=this.add.image(p.x,p.y+32,b.kind).setOrigin(.5,1).setDepth(b.x+b.y+2).setAlpha(b.progress<1?.6:1);if(['fence','bridge'].includes(b.kind))image.setScale(.52);this.objects.push(image);if(b.progress<1){const text=this.add.text(p.x,p.y-55,Math.round(b.progress*100)+'%',{fontSize:'13px',backgroundColor:'#172c29',color:'#efdca7'}).setOrigin(.5).setDepth(900);this.objects.push(text);}}}
  update(_time:number,delta:number){this.elapsed+=Math.min(delta,250)*this.speed;while(this.elapsed>=100){this.world.advance(1);this.elapsed-=100;}for(const h of this.world.state.heroes){const p=project(h.x,h.y,this.world.tile(h.x,h.y).z),sprite=this.heroes[h.id];sprite.setPosition(p.x,p.y+16).setDepth(h.x+h.y+3);sprite.setTexture(this.world.tile(h.x,h.y).kind==='river'&&!this.world.at(h.x,h.y)?'boat':'hero-sample');sprite.setTint([0xffd2bb,0xc5e6ff,0xffedb2,0xd5edb9,0xe4c9ff,0xffd9ae,0xb6ead8,0xd2d8ff][h.id]);}
