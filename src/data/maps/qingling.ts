@@ -40,3 +40,27 @@ export const MOUNTAIN_SCENERY=[
  {key:'eastcliff',cell:1,x:37,y:26,z:1,width:280,height:240},
  {key:'wooded-slope',cell:2,x:19,y:34,z:1,width:300,height:280}
 ];
+
+/** v3: low continuous foothills, small level foundations, no large rectangular platforms. */
+export function qinglingNaturalTile(x:number,y:number){
+ const noise=((x*73+y*131+x*y*7)%101)/100;
+ const peaks=[[17,24,7,6,11],[27,17,8,11,5],[39,22,6,5,8],[18,37,5,5,7]];
+ let z=0;
+ for(const [cx,cy,height,rx,ry] of peaks){const d=Math.sqrt(((x-cx)/rx)**2+((y-cy)/ry)**2);z=Math.max(z,Math.floor(height*Math.max(0,1-d)));}
+ if(x<8)z=Math.max(z,Math.floor((10-x)/2));
+ let kind:'plain'|'forest'|'hill'|'river'|'rock'|'road'=z>=3?'rock':z?'hill':noise>.68?'forest':'plain';
+ if(x>=20&&x<=36&&y>=21&&y<=40){
+  z=y<25+Math.sin(x/3)?2:y<32+Math.sin(x/4)?1:0;
+  kind='plain';
+ }
+ if((x===27&&y>=24&&y<=40)||(y===28&&x>=20&&x<=39)||(x===30&&y>=24&&y<=32))kind='road';
+ // Each foundation is only as large as its building, not a whole raised city block.
+ for(const [bx,by,bz] of [[25,23,2],[22,25,2],[31,22,2],[32,25,1],[31,31,1],[34,29,1]]){
+  if(x>=bx&&x<=bx+1&&y>=by&&y<=by+1){z=bz;kind='plain';}
+ }
+ if(x>=21&&x<=24&&y>=30&&y<=33){z=1;kind='plain';}
+ if(x>=30&&x<=31&&y>=35&&y<=36){z=0;kind='plain';}
+ const riverX=38+Math.round(Math.sin((y-15)/6)*2);
+ if(Math.abs(x-riverX)<=1&&y>=19){z=0;kind='river';}
+ return {x,y,z,kind};
+}
